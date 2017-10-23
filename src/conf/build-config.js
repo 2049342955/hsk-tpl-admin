@@ -6,6 +6,7 @@
  */
 const outAssetsDirectory = 'static';
 const Path = require('path');
+const Const = require('@hasaki-ui/hsk-nocturne');
 
 module.exports = {
     indexGenerator: [
@@ -14,7 +15,11 @@ module.exports = {
         }
     ],
     iconGenerator: {
-        enable: false
+        enable: true,
+        list:[{
+            aliUrl:Const.JINX_ICON_ALI_URL,
+            dir:'node_modules/@hasaki-ui/hsk-jinx/src/component/icon'
+        }]
     },
     wrapperGenerator: [
         {
@@ -23,6 +28,12 @@ module.exports = {
             suffix: 'utl'
         }
     ],
+    libraryWrapper:[{
+        name:'@hasaki-ui/hsk-jinx',
+        wrapperDir:['lib/component','lib/mixin'],
+        targetDir:['src/component/lib','src/mixin/lib'],
+        prefix:['jx']
+    }],
     apiMockGenerator: {enable: false},
     builder: {
         outAssetsDirectory,

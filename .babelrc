@@ -8,7 +8,11 @@
     "transform-runtime",
     "lodash",
     ["component", [
-      {"libraryName": "com@"}
+      {"libraryName": "com@"},
+      {"libraryName": "comp@"},
+      {"libraryName": "mixin@"},
+      {"libraryName": "dire@"},
+      {"libraryName": "api@"}
     ]]
   ],
   "comments": false,

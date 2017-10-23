@@ -17,6 +17,8 @@
     "not ie <= 8"
   ],
   "dependencies": {
+    "@hasaki-ui/hsk-jinx": "^1.0.2",
+    "@hasaki-ui/hsk-nocturne": "^1.0.6",
     "@hasaki-ui/hsk-parent": "^1.0.0"
   },
   "devDependencies": {
