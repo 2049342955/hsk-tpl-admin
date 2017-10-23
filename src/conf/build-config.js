@@ -20,7 +20,7 @@ module.exports = {
         {
             sourcePath: 'node_modules/@hasaki-ui/hsk-sona/lib',
             targetPath: 'src/common/lib',
-            suffix:'utl'
+            suffix: 'utl'
         }
     ],
     apiMockGenerator: {enable: false},
@@ -35,15 +35,15 @@ module.exports = {
         output: {
             path: "dist",
         },
-        alias : {
+        alias: {
             '@': 'src',
-            'api@':'src/api',
+            'api@': 'src/api',
             'com@': 'src/common',
             'comp@': 'src/component',
-            'conf@':'src/conf',
-            'mixin@':'src/mixin',
-            'dire@':'src/directive',
-            'page@':'src/page'
+            'conf@': 'src/conf',
+            'mixin@': 'src/mixin',
+            'dire@': 'src/directive',
+            'page@': 'src/page'
         },
         html: {
             filename: 'index.html',
@@ -52,8 +52,8 @@ module.exports = {
             favicon: 'static/image/favicon.ico',
             inject: true
         },
-        babel:{
-            include:[
+        babel: {
+            include: [
                 // 使用cnpm时
                 'node_modules/_@hasaki-ui',
                 // 正常使用npm时
@@ -71,6 +71,9 @@ module.exports = {
             sourceMap: true
         },
         scss: {
+            includePaths: ['src/asset/scss'],
+            //  src/assets/scss中必须有个base的样式文件
+            data: "@import 'base';",
             sourceMap: true
         },
         stylus: {
@@ -115,7 +118,7 @@ module.exports = {
             builder: {
                 model: 'file',
                 entry: {
-                    vendor: ['vue', 'vue-router', 'vuex','moment']
+                    vendor: ['vue', 'vue-router', 'vuex', 'moment']
                 },
                 output: {
                     filename: Path.join(outAssetsDirectory, 'js/[name].[chunkhash].js'),
@@ -131,6 +134,7 @@ module.exports = {
                     chunksSortMode: 'dependency'
                 },
                 extractCss: true,
+                uglify:true,
                 css: {
                     minimize: true,
                 },
@@ -138,7 +142,7 @@ module.exports = {
                     enable: true,
                     extensionList: ['js', 'css']
                 },
-                bundleAnalyzerReport: true
+                bundleAnalyzerReport: false
             }
         }
     },

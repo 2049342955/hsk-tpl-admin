@@ -1,19 +1,17 @@
 <style lang="scss" rel="stylesheet/scss">
-
+    .main {
+        color: $base__text-color;
+    }
 </style>
 
 <template>
-    <div>I am a blank template!</div>
+    <div class="main">I am a blank template!</div>
 </template>
 <script>
-    import { ObjUtl } from 'com@';
     export default {
         name: 'Main',
         components: {},
         mounted () {
-            console.log(ObjUtl.stringifyDateInObject({
-                birthday:new Date()
-            },['birthday']));
         }
     }
 </script>

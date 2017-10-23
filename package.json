@@ -1,5 +1,5 @@
 {
-  "name": "edui-blank-tpl",
+  "name": "hsk-tpl-admin",
   "version": "1.0.0",
   "description": "candy ui black tpl",
   "author": "liliang <liang.li02@hand-china.com>",
@@ -17,16 +17,10 @@
     "not ie <= 8"
   ],
   "dependencies": {
-    "@hasaki-ui/hsk-sona": "^1.0.4",
-    "es6-promise": "^4.1.1",
-    "vue": "^2.3.3",
-    "vue-router": "^2.5.3",
-    "vuex": "^2.3.1"
+    "@hasaki-ui/hsk-parent": "^1.0.0"
   },
   "devDependencies": {
     "@hasaki-ui/hsk-braum": "^1.0.8",
-    "@hasaki-ui/hsk-garen": "^1.0.8",
-    "@hasaki-ui/hsk-ryze": "^1.0.8",
-    "webpack": "^3.6.0"
+    "@hasaki-ui/hsk-garen": "^1.0.13"
   }
 }
