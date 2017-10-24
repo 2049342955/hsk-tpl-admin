@@ -6,13 +6,47 @@ Vue.use(Router);
 
 let routes = [
 {
-  path: '/main',
+  path: '/404',
+  name: '404',
+  component: resolve => {
+    require.ensure([], () => {
+      resolve(require('../../page/404/404.vue'))
+    }, '404');
+  }
+},{
+  path: '/login',
+  name: 'login',
+  component: resolve => {
+    require.ensure([], () => {
+      resolve(require('../../page/login/login.vue'))
+    }, 'login');
+  }
+},{
+  path: '/lock',
+  name: 'lock',
+  component: resolve => {
+    require.ensure([], () => {
+      resolve(require('../../page/lock/lock.vue'))
+    }, 'lock');
+  }
+},{
+  path: '/',
+  component: resolve => {
+    require.ensure([], () => {
+      resolve(require('../../page/main_$parent/layout/layout.vue'))
+    }, '$base');
+  },
+  children: [
+{
+  path: '',
   name: 'main',
   component: resolve => {
     require.ensure([], () => {
-      resolve(require('../../page/main/main.vue'))
+      resolve(require('../../page/main_$parent/main.vue'))
     }, 'main');
   }
+}
+  ]
 }
 ];
 

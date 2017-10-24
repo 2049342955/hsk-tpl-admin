@@ -10,15 +10,14 @@ const Const = require('@hasaki-ui/hsk-nocturne');
 
 module.exports = {
     indexGenerator: [
-        {
-            targetPath: 'src/conf/custom'
-        }
+        {targetPath: 'src/conf/custom'},
+        {targetPath: 'src/conf/store/module'}
     ],
     iconGenerator: {
         enable: true,
-        list:[{
-            aliUrl:Const.JINX_ICON_ALI_URL,
-            dir:'node_modules/@hasaki-ui/hsk-jinx/src/component/icon'
+        list: [{
+            aliUrl: Const.JINX_ICON_ALI_URL,
+            dir: 'node_modules/@hasaki-ui/hsk-jinx/src/component/icon'
         }]
     },
     wrapperGenerator: [
@@ -28,13 +27,17 @@ module.exports = {
             suffix: 'utl'
         }
     ],
-    libraryWrapper:[{
-        name:'@hasaki-ui/hsk-jinx',
-        wrapperDir:['lib/component','lib/mixin'],
-        targetDir:['src/component/lib','src/mixin/lib'],
-        prefix:['jx']
+    libraryWrapper: [{
+        name: '@hasaki-ui/hsk-jinx',
+        wrapperDir: ['lib/component', 'lib/mixin'],
+        targetDir: ['src/component/lib', 'src/mixin/lib'],
+        prefix: ['jx'],
+        suffix: [undefined, 'mx']
     }],
     apiMockGenerator: {enable: false},
+    routerGenerator: {
+        enable: true,
+    },
     builder: {
         outAssetsDirectory,
         sourceMap: true,
@@ -51,17 +54,16 @@ module.exports = {
             'api@': 'src/api',
             'com@': 'src/common',
             'comp@': 'src/component',
-            'conf@': 'src/conf',
+            'config@': 'src/conf/config',
             'mixin@': 'src/mixin',
             'dire@': 'src/directive',
-            'page@': 'src/page'
+            'page@': 'src/page',
+            'scss@': 'src/asset/scss'
         },
         html: {
             filename: 'index.html',
-            template: "index.html",
-            title: 'hsk空白模版',
-            favicon: 'static/image/favicon.ico',
-            inject: true
+            title: 'hsk admin模版',
+            favicon: 'static/image/favicon.ico'
         },
         babel: {
             include: [
@@ -100,9 +102,48 @@ module.exports = {
                     filename: '[name].js',
                     publicPath: '/'
                 },
+                html: {
+                    inject: true,
+                    template: "index_dev.html",
+                },
+                proxyTable: {},
                 extractCss: false,
                 port: '10086',
                 autoOpenBrowser: true
+            }
+        },
+        prod: {
+            nodeEnv: 'production',
+            builder: {
+                model: 'file',
+                entry: {
+                    vendor: ['vue', 'vue-router', 'vuex', 'moment']
+                },
+                output: {
+                    filename: Path.join(outAssetsDirectory, 'js/[name].[chunkhash].js'),
+                    chunkFilename: Path.join(outAssetsDirectory, 'js/[id].[chunkhash].js'),
+                    publicPath: '/'
+                },
+                html: {
+                    template: 'index_prod.html',
+                    inject: false,
+                    minify: {
+                        removeComments: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true
+                    },
+                    chunksSortMode: 'dependency'
+                },
+                extractCss: true,
+                uglify: true,
+                css: {
+                    minimize: true,
+                },
+                gzip: {
+                    enable: true,
+                    extensionList: ['js', 'css']
+                },
+                bundleAnalyzerReport: false
             }
         },
         test: {
@@ -122,38 +163,6 @@ module.exports = {
                     browsers: ['Chrome'],
                     concurrency: 0
                 }
-            }
-        },
-        prod: {
-            nodeEnv: 'production',
-            builder: {
-                model: 'file',
-                entry: {
-                    vendor: ['vue', 'vue-router', 'vuex', 'moment']
-                },
-                output: {
-                    filename: Path.join(outAssetsDirectory, 'js/[name].[chunkhash].js'),
-                    chunkFilename: Path.join(outAssetsDirectory, 'js/[id].[chunkhash].js'),
-                    publicPath: '/'
-                },
-                html: {
-                    minify: {
-                        removeComments: true,
-                        collapseWhitespace: true,
-                        removeAttributeQuotes: true
-                    },
-                    chunksSortMode: 'dependency'
-                },
-                extractCss: true,
-                uglify:true,
-                css: {
-                    minimize: true,
-                },
-                gzip: {
-                    enable: true,
-                    extensionList: ['js', 'css']
-                },
-                bundleAnalyzerReport: false
             }
         }
     },

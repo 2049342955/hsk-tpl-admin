@@ -1,0 +1,52 @@
+@import "./var";
+
+// 下拉选多选的时候,内容超出不换行,而是出现水平滚动条,避免向下顶开造成布局混乱
+.el-select {
+    .el-select__tags {
+        white-space: nowrap;
+        overflow: auto;
+    }
+}
+
+// 表格左右固定列设置背景,解决因为北京透明看到固定列下面的字。
+.el-table__fixed td,.el-table__fixed-right td{
+    background-color: white!important;
+}
+
+.el-table .el-table__header {
+    th {
+        font-weight: normal;
+        font-size: 13px;
+        height: 30px;
+    }
+}
+
+// 解决穿梭框样式混乱问题
+.el-transfer {
+    &-panel {
+        &__body {
+            .el-transfer-panel__item+.el-transfer-panel__item {
+                margin-left: 0;
+            }
+            .el-transfer-panel__item.el-checkbox {
+                display: block;
+            }
+        }
+        .el-transfer-panel__filter .el-input__inner {
+            height: 22px;
+            width: 100%;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+    }
+    &__buttons {
+        .el-button+.el-button {
+            margin-left: 0;
+        }
+    }
+}
+
+// 解决模态框字体颜色的问题
+.el-dialog__wrapper .el-dialog .el-dialog__body {
+    color: $base__text-color;
+}

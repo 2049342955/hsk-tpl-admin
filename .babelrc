@@ -8,6 +8,10 @@
     "transform-runtime",
     "lodash",
     ["component", [
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "~theme"
+      },
       {"libraryName": "com@"},
       {"libraryName": "comp@"},
       {"libraryName": "mixin@"},

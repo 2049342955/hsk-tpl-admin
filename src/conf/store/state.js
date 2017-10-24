@@ -1,3 +1,3 @@
 export default {
-  pageLoading:true
+    pageLoading: true
 };

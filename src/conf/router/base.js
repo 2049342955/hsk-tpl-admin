@@ -4,11 +4,7 @@ let routerList = [];
 routerList.push({
   path: '*',
   name:'index',
-  component: resolve => {
-    require.ensure([], () => {
-      resolve(require('../../page/main/main.vue'))
-    }, 'index')
-  }
+  redirect: { name: 'main' }
 });
 
 export default routerList;

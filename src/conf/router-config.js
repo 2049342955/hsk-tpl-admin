@@ -1,13 +1,16 @@
+/**
+ * Created by joyer on 17/10/24.
+ *
+ * 路由钩子配置
+ *
+ */
 
-exports.beforeLoad = (routerConfigList) => {
-
+module.exports = {
+    beforeLoad () {
+    },
+    afterLoad () {
+    },
+    loadRouter (router) {
+        router.path = router.path.replace(/main/g, '');
+    }
 };
-
-exports.afterLoad = (routerConfigList) => {
-
-};
-
-exports.loadParentRouter = (parentRouterConfig) => {
-
-};
-

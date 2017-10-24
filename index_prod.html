@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+
+
+     ┍-┑        ┍-┑
+     | |        | |
+    ┍---------------┑
+    |               |
+    |       ——      |
+    |   ┰-┙   ┕-┰   |
+    |               |
+    |       ┸       |
+    |               |
+    ┕----┑      ┍---┙
+         |      |   神兽在此
+         |      |   bug没有
+         |      ┕------------┑
+         |                   |
+         |                   |
+         |                   |
+         ┕-┑ ┑ ┑------┑ ┑ ┑--┙
+           | | |      | | |
+           ┕-┸-┙      ┕-┸-┙
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.options.favicon %>" />
+</head>
+<body>
+<!-- 垫片 -->
+
+<div id="app" style="display: none"></div>
+<div id="browser" style="display: none">请下载最新的浏览器</div>
+<div id="load">正在加载中</div>
+<script src="./static/js/edui-platform-1.0.0.js"></script>
+<script>
+    +(function () {
+        var loadAsset = {
+            cssLoadList:${JSON.stringify(htmlWebpackPlugin.files.css)},
+            jsLoadList:${JSON.stringify(htmlWebpackPlugin.files.js)}
+        };
+
+        var cssLoadList = [];
+        var jsLoadList = [];
+
+        // IE 兼容代码
+        if(window.EDUI_ENV.isIE){
+            if(window.EDUI_ENV.isLt(10)){
+                var $app = document.getElementById('app');
+                var $browser = document.getElementById('browser');
+                var $load = document.getElementById('load');
+                $app.style.display = "none";
+                $load.style.display = "none";
+                $browser.style.display = "block";
+                return ;
+            }else jsLoadList.push('static/js/flexibility.js','static/js/browser.js');
+        }
+
+        // 业务代码
+        cssLoadList = cssLoadList.concat(loadAsset.cssLoadList);
+        jsLoadList = jsLoadList.concat(loadAsset.jsLoadList);
+
+        // css异步加载
+        for(var i1 = 1; i1 < cssLoadList.length;i++){
+            var cssURL = cssLoadList[i1];
+            var head = document.getElementsByTagName('head')[0];
+            var linkTag = document.createElement('link');
+            linkTag.id = 'dynamic-style';
+            linkTag.href = cssURL;
+            linkTag.setAttribute('rel','stylesheet');
+            linkTag.setAttribute('media','all');
+            linkTag.setAttribute('type','text/css');
+            head.appendChild(linkTag);
+        }
+
+        // js同步加载
+        function loadScript(jsUrlList,done) {
+            if( jsUrlList.length > 0 ) {
+                var body= document.getElementsByTagName('body')[0];
+                var script= document.createElement('script');
+                script.type= 'text/javascript';
+                script.onload = script.onreadystatechange = function() {
+                    if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete" ) {
+                        loadScript(jsUrlList,done);
+                        script.onload = script.onreadystatechange = null;
+                    }
+                };
+                script.src= jsUrlList.shift();
+                body.appendChild(script);
+            }else done();
+        }
+        loadScript(jsLoadList,function () {
+            // 显示内容
+            var $app = document.getElementById('app');
+            var $browser = document.getElementById('browser');
+            var $load = document.getElementById('load');
+            $app.style.display = "block";
+            $browser.style.display = "none";
+            $load.style.display = "none";
+        });
+    })();
+</script>
+
+<script>
+    var yangtuo = ''+
+            '     ┍-┑        ┍-┑              \n'+
+            '     | |        | |              \n'+
+            '    ┍---------------┑            \n'+
+            '    |               |            \n'+
+            '    |       ——      |            \n'+
+            '    |   ┰-┙   ┕-┰   |            \n'+
+            '    |               |            \n'+
+            '    |       ┸       |            \n'+
+            '    |               |            \n'+
+            '    ┕----┑      ┍---┙            \n'+
+            '         |      |   神兽在此      \n'+
+            '         |      |   bug没有       \n'+
+            '         |      ┕------------┑   \n'+
+            '         |                   |   \n'+
+            '         |                   |   \n'+
+            '         |                   |   \n'+
+            '         ┕-┑ ┑ ┑------┑ ┑ ┑--┙   \n'+
+            '           | | |      | | |      \n'+
+            '           ┕-┸-┙      ┕-┸-┙   ';
+    console.log(yangtuo);
+</script>
+</body>
+</html>
