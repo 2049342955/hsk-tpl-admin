@@ -7,7 +7,7 @@
 
 import Vue from 'vue';
 import {Loading,MessageBox,Notification,Message} from 'element-ui'
-import {JxBaseMx} from 'mixin@';
+import {JxBaseMx,BaseMx} from 'mixin@';
 
 Vue.config.productionTip = false;
 
@@ -24,5 +24,6 @@ Vue.prototype.$message = Message;
 
 // base mixins
 Vue.mixin(JxBaseMx);
+Vue.mixin(BaseMx);
 
 export default {};

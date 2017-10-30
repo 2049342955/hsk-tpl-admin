@@ -27,8 +27,8 @@ export default {
         /**
          * 得到当前目录
          */
-        $_currentMenu() {
-            let menuList = this.$_currentMenuList();
+        _$currentMenu() {
+            let menuList = this._$currentMenuList();
             if (menuList && menuList.length > 0) {
                 return menuList[menuList.length];
             }
@@ -36,7 +36,7 @@ export default {
         /**
          * 得到当前目录列表,这个列表中前一个目录是后一个目录的父目录,最后一个目录是当前目录
          */
-        $_currentMenuList(){
+        _$currentMenuList(){
             let currentPath = this.$route.path;
             return getMenuListByPath(currentPath, this.menuList);
         }

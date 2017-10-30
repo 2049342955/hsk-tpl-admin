@@ -33,8 +33,21 @@ module.exports = {
         targetDir: ['src/component/lib', 'src/mixin/lib'],
         prefix: ['jx'],
         suffix: [undefined, 'mx']
+    },{
+        name: '@hasaki-ui/hsk-teemo',
+        wrapperDir: ['lib/component', 'lib/mixin'],
+        targetDir: ['src/component/lib', 'src/mixin/lib'],
+        prefix: ['tm'],
+        suffix: [undefined, 'mx']
     }],
-    apiMockGenerator: {enable: false},
+    apiMockGenerator: {
+        enable: true,
+        model:'mock',
+        workspace:'src/api',
+        time:1000,
+        mockFolderName:'local',
+        proxyFolderName:'server'
+    },
     routerGenerator: {
         enable: true,
     },
@@ -71,9 +84,16 @@ module.exports = {
                 'node_modules/_@hasaki-ui',
                 // 正常使用npm时
                 'node_modules/@hasaki-ui'
+            ],
+            exclude:[
             ]
         },
-        vue: {},
+        vue: {
+            cssModules: {
+                localIdentName: '[local]_[hash:base64:8]',
+                camelCase: true
+            }
+        },
         css: {
             sourceMap: true
         },
@@ -108,7 +128,7 @@ module.exports = {
                 },
                 proxyTable: {},
                 extractCss: false,
-                port: '10086',
+                port: '10087',
                 autoOpenBrowser: true
             }
         },
@@ -117,7 +137,7 @@ module.exports = {
             builder: {
                 model: 'file',
                 entry: {
-                    vendor: ['vue', 'vue-router', 'vuex', 'moment']
+                    vendor: ['vue', 'vue-router', 'vuex', 'moment','animejs']
                 },
                 output: {
                     filename: Path.join(outAssetsDirectory, 'js/[name].[chunkhash].js'),
@@ -143,7 +163,7 @@ module.exports = {
                     enable: true,
                     extensionList: ['js', 'css']
                 },
-                bundleAnalyzerReport: false
+                bundleAnalyzerReport: true
             }
         },
         test: {

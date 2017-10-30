@@ -45,6 +45,14 @@ let routes = [
       resolve(require('../../page/main_$parent/main.vue'))
     }, 'main');
   }
+},{
+  path: '/student',
+  name: 'mainStudent',
+  component: resolve => {
+    require.ensure([], () => {
+      resolve(require('../../page/main_$parent/student/student.vue'))
+    }, 'mainStudent');
+  }
 }
   ]
 }

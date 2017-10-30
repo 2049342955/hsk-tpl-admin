@@ -1,4 +1,4 @@
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss" rel="stylesheet/scss" module>
     $layout-page__color: $base__text-color !default;
     $layout-page__padding: 30px !default;
     $layout-page__z-index: 40 !default;
@@ -7,96 +7,99 @@
     $layout-page__title__color: $base__text-color--darken !default;
     $layout-page__loading__color: $base__color--primary !default;
 
-    .layout-page {
+    .page {
         color: $layout-page__color;
         @include m_layout-colum;
         flex-grow: 1;
         position: relative;
-        &__loading {
-            @include m_layout-core;
-            flex-direction: column;
+    }
+
+    .loading {
+        @include m_layout-core;
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: $layout-page__z-index;
+        color: $layout-page__loading__color;
+        background-color: #fff;
+        p {
+            margin-top: 20px;
+            font-size: 30px;
+            letter-spacing: 10px;
+        }
+        .bottom {
             position: absolute;
             width: 100%;
-            height: 100%;
-            z-index: $layout-page__z-index;
-            color: $layout-page__loading__color;
-            background-color: #fff;
-            p {
-                margin-top: 20px;
-                font-size: 30px;
-                letter-spacing: 10px;
-            }
-            .bottom {
-                position: absolute;
-                width: 100%;
-                bottom: 20px;
+            bottom: 20px;
+        }
+    }
+
+    .top {
+        border-bottom: $layout-page__border-bottom;
+        padding-left: $layout-page__padding;
+        padding-right: $layout-page__padding;
+        @include m_layout-row;
+        .title {
+            @include m_layout-middle;
+            height: 50px;
+            font-size: $layout-page__title__font-size;
+            @include m_text-ellipsis;
+            color: $layout-page__title__color;
+            margin-right: 70px;
+            i {
+                margin-right: 10px;
             }
         }
-        &__top {
-            border-bottom: $layout-page__border-bottom;
-            padding-left: $layout-page__padding;
-            padding-right: $layout-page__padding;
-            @include m_layout-row;
-            .title {
-                @include m_layout-middle;
-                height: 50px;
-                font-size: $layout-page__title__font-size;
-                @include m_text-ellipsis;
-                color: $layout-page__title__color;
-                margin-right: 70px;
-                i {
-                    margin-right: 10px;
-                }
-            }
-            .info {
-                @include m_layout-middle;
-                align-items: center;
-                flex-grow: 1;
-                i {
-                    color: $layout-page__loading__color;
-                    margin-right: 10px;
-                }
-            }
-            .btns {
-                @include m_layout-middle;
-                height: 50px;
-            }
-        }
-        &__cont {
-            padding: $layout-page__padding/2 $layout-page__padding;
+        .info {
+            @include m_layout-middle;
+            align-items: center;
             flex-grow: 1;
-            background-color: #F7F7F7;
-            > .breadcrumb-wrap {
-                margin-bottom: 20px;
+            i {
+                color: $layout-page__loading__color;
+                margin-right: 10px;
             }
+        }
+        .btns {
+            @include m_layout-middle;
+            height: 50px;
+        }
+    }
+
+    .cont {
+        padding: $layout-page__padding/2 $layout-page__padding;
+        flex-grow: 1;
+        background-color: #F7F7F7;
+        > .breadcrumb-wrap {
+            margin-bottom: 20px;
         }
     }
 </style>
 <template>
-    <div class="layout-page">
-        <div class="layout-page__loading" v-show="loading">
+    <div :class="$style.page">
+        <div :class="$style.loading" v-show="loading">
             <img src="./loading.png">
             <p>页面正在生成...</p>
-            <img class="bottom" src="./loading-bottom.png">
+            <img :class="$style.bottom" src="./loading-bottom.png">
         </div>
-        <div class="layout-page__top">
-            <div class="title">
+        <div :class="$style.top">
+            <div :class="$style.title">
                 <Icon v-if="icon" :type="icon"></Icon>
                 {{ title }}
             </div>
-            <div class="info">
+            <div :class="$style.info">
                 <Icon v-if="icon" type="speaker"></Icon>
                 {{info}}
             </div>
-            <div class="btns">
+            <div :class="$style.btns">
                 <slot name="btnList">
                 </slot>
             </div>
         </div>
-        <div class="layout-page__cont" :class="contClass">
-            <div class="breadcrumb-wrap" v-if="breadcrumb">
+        <div :class="[$style.cont,contClass]">
+            <div :class="$style['breadcrumb-wrap']" v-if="breadcrumb">
                 <slot name="breadcrumb">
-                    <el-breadcrumb separator=" > ">
+                    <el-breadcrumb separator=" > " v-if="currentMenuList.length > 0">
                         <el-breadcrumb-item v-for="menu in currentMenuList"
                                             :key="menu.router ? menu.router : menu.text">
                             {{menu.text}}
@@ -157,7 +160,7 @@
         },
         methods: {
             initBreadcrumb(){
-                let menuList = this.$_currentMenuList();
+                let menuList = this._$currentMenuList();
                 this.currentMenuList.length = 0;
                 if (menuList) {
                     ArrayUtl.protoCombine(this.currentMenuList, menuList.reverse());
