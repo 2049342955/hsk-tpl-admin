@@ -8,7 +8,7 @@
     "test": "rz build test"
   },
   "engines": {
-    "node": ">= 4.0.0",
+    "node": ">= 8.0.0",
     "npm": ">= 3.0.0"
   },
   "browserslist": [
@@ -17,12 +17,13 @@
     "not ie <= 8"
   ],
   "dependencies": {
+    "@hasaki-ui/hsk-camille": "^1.0.2",
     "@hasaki-ui/hsk-janna": "^1.0.2",
     "@hasaki-ui/hsk-jinx": "^1.0.7",
-    "@hasaki-ui/hsk-nocturne": "^1.0.6",
+    "@hasaki-ui/hsk-nocturne": "^1.0.7",
     "@hasaki-ui/hsk-shaco": "^1.0.0",
-    "@hasaki-ui/hsk-sona": "^1.0.8",
-    "@hasaki-ui/hsk-teemo": "^1.0.3",
+    "@hasaki-ui/hsk-sona": "^1.0.9",
+    "@hasaki-ui/hsk-teemo": "^1.0.7",
     "animejs": "^2.2.0",
     "autoprefixer": "^7.1.6",
     "babel-plugin-component": "^0.10.1",
@@ -40,6 +41,7 @@
     "@hasaki-ui/hsk-braum": "^1.0.8",
     "@hasaki-ui/hsk-garen": "^1.0.13",
     "element-theme": "^2.0.0",
-    "element-theme-chalk": "^2.0.1"
+    "element-theme-chalk": "^2.0.1",
+    "fs-extra": "^4.0.2"
   }
 }

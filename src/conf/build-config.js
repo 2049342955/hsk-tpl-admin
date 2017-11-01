@@ -33,7 +33,7 @@ module.exports = {
         targetDir: ['src/component/lib', 'src/mixin/lib'],
         prefix: ['jx'],
         suffix: [undefined, 'mx']
-    },{
+    }, {
         name: '@hasaki-ui/hsk-teemo',
         wrapperDir: ['lib/component', 'lib/mixin'],
         targetDir: ['src/component/lib', 'src/mixin/lib'],
@@ -42,11 +42,11 @@ module.exports = {
     }],
     apiMockGenerator: {
         enable: true,
-        model:'mock',
-        workspace:'src/api',
-        time:1000,
-        mockFolderName:'local',
-        proxyFolderName:'server'
+        model: 'mock',
+        workspace: 'src/api',
+        time: 1000,
+        mockFolderName: 'local',
+        proxyFolderName: 'server'
     },
     routerGenerator: {
         enable: true,
@@ -85,8 +85,7 @@ module.exports = {
                 // 正常使用npm时
                 'node_modules/@hasaki-ui'
             ],
-            exclude:[
-            ]
+            exclude: []
         },
         vue: {
             cssModules: {
@@ -137,7 +136,7 @@ module.exports = {
             builder: {
                 model: 'file',
                 entry: {
-                    vendor: ['vue', 'vue-router', 'vuex', 'moment','animejs']
+                    vendor: ['vue', 'vue-router', 'vuex', 'moment', 'animejs']
                 },
                 output: {
                     filename: Path.join(outAssetsDirectory, 'js/[name].[chunkhash].js'),
@@ -168,6 +167,9 @@ module.exports = {
         },
         test: {
             nodeEnv: 'development',
+            apiMockGenerator: {
+                time: 10,
+            },
             builder: {
                 model: 'test',
                 output: {

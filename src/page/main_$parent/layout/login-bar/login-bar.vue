@@ -30,15 +30,11 @@
     }
 
     .logo-img {
-        width: 130px;
-        height: 30px;
         overflow: hidden;
-        display: inline-block;
-        margin-top: 10px;
+        float: left;
+        margin-top: 5px;
         img {
-            margin-left: -10px;
             height: 40px;
-            margin-top: -10px;
         }
     }
 
@@ -55,10 +51,10 @@
         background: none repeat scroll 0 0 rgba($base__color--primary, 0.2);
         border-radius: 3px;
         font-size: 10px;
-        margin-left: 0;
+        margin-left: 15px;
         padding: 2px 5px;
         position: relative;
-        top: -3px;
+        top: 6px;
     }
 
     .left {

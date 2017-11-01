@@ -119,8 +119,8 @@
     import {mapState} from 'vuex';
 
     export default {
-        name: 'Page',
-        componentName: 'Page',
+        name: 'SpPage',
+        componentName: 'SpPage',
         components: {Icon, [Breadcrumb.name]: Breadcrumb, [BreadcrumbItem.name]: BreadcrumbItem},
         mixins: [MenuMx],
         props: {

@@ -6,6 +6,14 @@ Vue.use(Router);
 
 let routes = [
 {
+  path: '/lock',
+  name: 'lock',
+  component: resolve => {
+    require.ensure([], () => {
+      resolve(require('../../page/lock/lock.vue'))
+    }, 'lock');
+  }
+},{
   path: '/404',
   name: '404',
   component: resolve => {
@@ -20,14 +28,6 @@ let routes = [
     require.ensure([], () => {
       resolve(require('../../page/login/login.vue'))
     }, 'login');
-  }
-},{
-  path: '/lock',
-  name: 'lock',
-  component: resolve => {
-    require.ensure([], () => {
-      resolve(require('../../page/lock/lock.vue'))
-    }, 'lock');
   }
 },{
   path: '/',
@@ -46,12 +46,12 @@ let routes = [
     }, 'main');
   }
 },{
-  path: '/student',
-  name: 'mainStudent',
+  path: '/category',
+  name: 'mainCategory',
   component: resolve => {
     require.ensure([], () => {
-      resolve(require('../../page/main_$parent/student/student.vue'))
-    }, 'mainStudent');
+      resolve(require('../../page/main_$parent/category/category.vue'))
+    }, 'mainCategory');
   }
 }
   ]

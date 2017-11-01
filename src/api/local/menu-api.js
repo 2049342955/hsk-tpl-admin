@@ -19,9 +19,9 @@ MenuApi.getMenuList = () => {
         icon:     'home',
         router:   '/'
     },{
-        text:     '学生列表',
+        text:     '菜品类别',
         icon:     'menu',
-        router:   '/student'
+        router:   '/category'
     }];
 };
 
