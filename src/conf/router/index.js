@@ -6,20 +6,20 @@ Vue.use(Router);
 
 let routes = [
 {
-  path: '/lock',
-  name: 'lock',
-  component: resolve => {
-    require.ensure([], () => {
-      resolve(require('../../page/lock/lock.vue'))
-    }, 'lock');
-  }
-},{
   path: '/404',
   name: '404',
   component: resolve => {
     require.ensure([], () => {
       resolve(require('../../page/404/404.vue'))
     }, '404');
+  }
+},{
+  path: '/lock',
+  name: 'lock',
+  component: resolve => {
+    require.ensure([], () => {
+      resolve(require('../../page/lock/lock.vue'))
+    }, 'lock');
   }
 },{
   path: '/login',

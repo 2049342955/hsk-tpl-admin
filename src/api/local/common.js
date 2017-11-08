@@ -62,6 +62,7 @@ Common.loadCategoryList = () => {
         category.id = Shaco.uuid();
         category.code = Shaco.uppercaseLetter(4);
         category.name = Shaco.item(nameList);
+        const store = Shaco.item(storeList);
         category.storeId = store.id;
         category.storeName = store.name;
         const department = Shaco.item(departmentList);
